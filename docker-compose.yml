@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+
+  db:
+    image: mysql
+    env_file: .env
+    environment:
+      MYSQL_ROOT_PASSWORD: ${TYPEORM_PASSWORD}
+      MYSQL_PASSWORD: ${TYPEORM_PASSWORD}
+      MYSQL_DATABASE: ${TYPEORM_DATABASE}
+      MYSQL_USER: ${TYPEORM_USERNAME}
+    ports:
+      - '${TYPEORM_PORT}:3306'
+    volumes:
+      - mysql_data:/var/lib/mysql
+
+volumes:
+  mysql_data: 
