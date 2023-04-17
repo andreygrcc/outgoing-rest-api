@@ -6,14 +6,15 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { hashSync } from 'bcrypt';
-import { ExpendituresEntity } from '../expenditures/expenditures.entity';
+import { ExpendituresEntity } from '../expenditures/entities/expenditures.entity';
 import { ApiProperty } from '@nestjs/swagger';
+import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
   @PrimaryGeneratedColumn('uuid')
   @ApiProperty()
-  userId: string;
+  user_id?: string;
 
   @Column({ name: 'username', unique: true })
   @ApiProperty()
@@ -23,11 +24,11 @@ export class UsersEntity {
   @ApiProperty()
   email: string;
 
-  @Column({ name: 'password' })
+  @Column({ name: 'password', select: false })
   password: string;
 
-  @OneToMany(() => ExpendituresEntity, (expenditure) => expenditure.username)
-  expenditures: ExpendituresEntity[];
+  @OneToMany(() => ExpendituresEntity, (expenditure) => expenditure.user)
+  expenditure?: ExpendituresEntity[];
 
   @BeforeInsert()
   hashPassword(): void {

@@ -2,11 +2,11 @@ import { Controller, Post, Req, UseGuards } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { LocalAuthGuard } from 'src/auth/auth-guards/local-auth.guard';
 import { AuthService } from 'src/auth/auth.service';
-import { LoginDto } from './auth/dto/login.dto';
+import { LoginDto } from './dto/login.dto';
 
 @Controller()
 @ApiTags('Login')
-export class AppController {
+export class AuthController {
   constructor(private readonly authService: AuthService) {}
   @UseGuards(LocalAuthGuard)
   @Post('/login')

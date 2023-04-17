@@ -14,7 +14,7 @@ export class UsersService {
 
   async findAll(): Promise<UsersEntity[]> {
     return await this.usersRepository.find({
-      select: ['userId', 'username', 'email'],
+      select: ['user_id', 'username', 'email'],
     });
   }
   async findOneOrFail(
@@ -45,13 +45,13 @@ export class UsersService {
   }
 
   async update(id: string, data: UpdateUserDto): Promise<UsersEntity> {
-    const user = await this.findOneOrFail({ where: { userId: id } });
+    const user = await this.findOneOrFail({ where: { user_id: id } });
     this.usersRepository.merge(user, data);
     return await this.usersRepository.save(user);
   }
 
   async destroy(id: string) {
-    const user = await this.findOneOrFail({ where: { userId: id } });
+    const user = await this.findOneOrFail({ where: { user_id: id } });
     this.usersRepository.remove(user);
   }
 }

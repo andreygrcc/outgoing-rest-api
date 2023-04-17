@@ -50,7 +50,7 @@ export class UsersController {
     description: 'Nenhum usuário encontrado pelo parâmetro',
   })
   async show(@Param('id', new ParseUUIDPipe()) id: string) {
-    return await this.usersService.findOneOrFail({ where: { userId: id } });
+    return await this.usersService.findOneOrFail({ where: { user_id: id } });
   }
 
   @Post()

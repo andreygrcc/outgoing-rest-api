@@ -8,29 +8,29 @@ import {
 } from 'class-validator';
 import { UsersService } from 'src/app/users/users.service';
 
-@ValidatorConstraint({ name: 'UserExists', async: true })
+@ValidatorConstraint({ name: 'IsUserAlreadyExist', async: true })
 @Injectable()
-export class IsEmailAlreadyExistConstraint
+export class IsUserAlreadyExistDecorator
   implements ValidatorConstraintInterface
 {
   constructor(private usersService: UsersService) {}
 
-  validate(email: any, args: ValidationArguments) {
-    return this.usersService.findOneByEmail(email).then((user) => {
+  validate(userName: any, args: ValidationArguments) {
+    return this.usersService.findOneByName(userName).then((user) => {
       if (user) return false;
       return true;
     });
   }
 }
 
-export function IsEmailAlreadyExist(validationOptions?: ValidationOptions) {
+export function IsUserAlreadyExist(validationOptions?: ValidationOptions) {
   return function (object: object, propertyName: string) {
     registerDecorator({
       target: object.constructor,
       propertyName: propertyName,
       options: validationOptions,
       constraints: [],
-      validator: IsEmailAlreadyExistConstraint,
+      validator: IsUserAlreadyExistDecorator,
     });
   };
 }

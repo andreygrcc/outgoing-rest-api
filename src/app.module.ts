@@ -3,11 +3,11 @@ import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './app/users/users.module';
 import { AuthModule } from './auth/auth.module';
-import { IsUserAlreadyExistConstraint } from './utils/UserExistsConstraint';
-import { ExpendituresModule } from './app/expenditures/expenditures.module';
-import { IsEmailAlreadyExistConstraint } from './utils/EmailExistsConstraint';
-import { AppController } from './app.controller';
-
+import { IsUserAlreadyExistDecorator } from './shared/decorators/IsUserAlreadyExists.decorator';
+import { ExpendituresModule } from './app/expenditures/module/expenditures.module';
+import { IsEmailAlreadyExistDecorator } from './shared/decorators/IsEmailAlreadyExists.decorator';
+import { UserExistsDecorator } from './shared/decorators/UserExists.decorator';
+import { EmailModule } from './app/email/module/email.module';
 @Module({
   imports: [
     ConfigModule.forRoot(),
@@ -24,8 +24,12 @@ import { AppController } from './app.controller';
     UsersModule,
     AuthModule,
     ExpendituresModule,
+    EmailModule,
   ],
-  controllers: [AppController],
-  providers: [IsUserAlreadyExistConstraint, IsEmailAlreadyExistConstraint],
+  providers: [
+    IsUserAlreadyExistDecorator,
+    IsEmailAlreadyExistDecorator,
+    UserExistsDecorator,
+  ],
 })
 export class AppModule {}
