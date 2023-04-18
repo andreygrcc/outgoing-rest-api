@@ -1,73 +1,72 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
+# Expenditure API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Repositório feito em NestJs com para uma API de registro de Despesas.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+Tecnologias
 
-## Description
+- NestJs/NodeJs
+- TypeOrm 
+- Docker
+- Swagger
+- Jwt
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+# Start da Aplicação
 
-## Installation
+## Antes de tudo vamos criar um .env na raíz do projeto
 
-```bash
-$ npm install
+_existe um .env.example na raíz do projeto com portas caso você não queira ficar verificando as portas disponíveis na sua máquina daí é só copiar e colar :)_
+
+```
+JWT_CREDENTIALS=
+TYPEORM_CONNECTION=
+TYPEORM_HOST=
+TYPEORM_PORT=
+TYPEORM_USERNAME=
+TYPEORM_PASSWORD=
+TYPEORM_DATABASE=
+MAILER_INCOMING_USER =
+MAILER_INCOMING_PASS =
+MAILER_HOST =
+MAILER_PORT =
+MAILER_DEFAULT_FROM = 
+
+```
+Obs.: As variaveis "MAILER" são referentes a configuração do módulo <a href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no <a href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP e fazer o envio dos email para as despesas cadastradas.
+
+##
+
+Após configurado o .env é necessário rodar o comando na raiz do projeto
+
+```
+npm install
 ```
 
-## Running the app
+Depois, com o Docker instalado na máquina podemos rodar o comando a seguir
+para inicializar o MySql
 
-```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+```
+docker-compose up
 ```
 
-## Test
+Depois que todo o ambiente estiver instalado e as instâncias
+do docker estiverem rodando, agora é somente startar o projeto, criar um usuário e show!
 
-```bash
-# unit tests
-$ npm run test
+URL do swagger:
 
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+```
+localhost:3000/api
 ```
 
-## Support
+Para começar a usar a API
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+- Criar usuário
+  - POST api/users
+- Login
 
-## Stay in touch
+  - POST /login
+    - BEARER _seu token_
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- Testes
+  - npm run test
 
-## License
-
-Nest is [MIT licensed](LICENSE).
+Os testes unitários foram feitos somente nas services, pois na controller eu julguei que ultrapassaria um pouco o escopo e seria considerado já como testes e2e
