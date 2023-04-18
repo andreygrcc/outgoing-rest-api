@@ -6,8 +6,6 @@ Tecnologias
 
 - NestJs/NodeJs
 - TypeOrm 
-- MySql 
-- Redis
 - Docker (Compose e Dockerfile)
 - Swagger
 - Jwt
