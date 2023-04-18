@@ -65,3 +65,4 @@ Para começar a usar a API
 - Testes
   - npm run test
 
+Os testes unitários foram feitos somente nas services, pois na controller eu julguei que ultrapassaria um pouco o escopo e seria e2e
