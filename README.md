@@ -56,7 +56,7 @@ localhost:3000/api
 Para começar a usar a API
 
 - Criar usuário
-  - POST /user
+  - POST api/users
 - Login
 
   - POST /login
