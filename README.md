@@ -24,12 +24,15 @@ TYPEORM_PORT=
 TYPEORM_USERNAME=
 TYPEORM_PASSWORD=
 TYPEORM_DATABASE=
-MAILER_USERNAME =
-MAILER_PASSWORD =
+MAILER_INCOMING_USER =
+MAILER_INCOMING_PASS =
 MAILER_HOST =
 MAILER_PORT =
+MAILER_DEFAULT_FROM = 
 
 ```
+As variaveis "MAILER" são referentes a configuração do módulo <a href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no mail <a href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP
+
 
 Primeiramente é necessário rodar o comando na raiz do projeto
 
