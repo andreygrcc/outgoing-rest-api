@@ -31,10 +31,10 @@ MAILER_PORT =
 MAILER_DEFAULT_FROM = 
 
 ```
-As variaveis "MAILER" são referentes a configuração do módulo <a href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no mail <a href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP
+Obs.: As variaveis "MAILER" são referentes a configuração do módulo <a href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no <a href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP e fazer o envio dos email para as despesas cadastradas.
 
 
-Primeiramente é necessário rodar o comando na raiz do projeto
+Após configurado o .env é necessário rodar o comando na raiz do projeto
 
 ```
 npm install
