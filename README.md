@@ -31,7 +31,7 @@ MAILER_PORT =
 MAILER_DEFAULT_FROM = 
 
 ```
-Obs.: As variaveis "MAILER" são referentes a configuração do módulo <a href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no <a href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP e fazer o envio dos email para as despesas cadastradas.
+Obs.: As variaveis "MAILER" são referentes a configuração do módulo <a target="_blank" href="https://nest-modules.github.io/mailer/docs/mailer.html">Node Mailer</a>, para testes criei uma conta no <a target="_blank" href="https://app.mailgun.com/">MailGun</a> para usar os serviços de SMTP e fazer o envio dos email para as despesas cadastradas.
 
 ##
 
