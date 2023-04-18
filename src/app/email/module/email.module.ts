@@ -6,19 +6,17 @@ import { MailerModule } from '@nestjs-modules/mailer';
   imports: [
     MailerModule.forRoot({
       transport: {
-        host: process.env.MAILER_HOST, //host smtp
-        secure: false, //regras de segurança do serviço smtp
-        port: process.env.MAILER_PORT as unknown as number, // porta
+        host: process.env.MAILER_HOST,
+        secure: false,
+        port: process.env.MAILER_PORT as unknown as number,
         auth: {
-          //dados do usuário e senha
-          user: process.env.MAILER_USERNAME,
-          pass: process.env.MAILER_PASSWORD,
+          user: process.env.MAILER_INCOMING_USER,
+          pass: process.env.MAILER_INCOMING_PASS,
         },
         ignoreTLS: true,
       },
       defaults: {
-        // configurações que podem ser padrões
-        from: process.env.MAILER_SENDER,
+        from: process.env.MAILER_DEFAULT_FROM,
       },
     }),
   ],

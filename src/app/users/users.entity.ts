@@ -8,7 +8,6 @@ import {
 import { hashSync } from 'bcrypt';
 import { ExpendituresEntity } from '../expenditures/entities/expenditures.entity';
 import { ApiProperty } from '@nestjs/swagger';
-import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'users' })
 export class UsersEntity {
