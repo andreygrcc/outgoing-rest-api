@@ -1,10 +1,13 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import {
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOneOptions, Repository } from 'typeorm';
 import { DateDto } from '../dto/date.dto';
 import { UpdateExpenditureDto } from '../dto/update-expenditure.dto';
 import { ExpendituresEntity } from '../entities/expenditures.entity';
-
 @Injectable()
 export class ExpendituresService {
   constructor(
@@ -29,9 +32,13 @@ export class ExpendituresService {
   }
 
   async findByDate(data: DateDto): Promise<ExpendituresEntity[] | null> {
-    return await this.expenditureRepository.find({
-      where: { user: { user_id: data.userId }, expenditureDate: data.date },
-    });
+    try {
+      return await this.expenditureRepository.find({
+        where: { user: { user_id: data.userId }, expenditureDate: data.date },
+      });
+    } catch (error) {
+      throw new NotFoundException(error.message);
+    }
   }
 
   async store(data: ExpendituresEntity) {
@@ -39,20 +46,32 @@ export class ExpendituresService {
   }
 
   async update(data: UpdateExpenditureDto): Promise<ExpendituresEntity> {
-    const expenditure = await this.findOneOrFail({
-      where: {
-        user: { user_id: data.userId },
-        expenditureId: data.expenditureId,
-      },
-    });
-    this.expenditureRepository.merge(expenditure, data);
-    return await this.expenditureRepository.save(expenditure);
+    try {
+      const expenditure = await this.findOneOrFail({
+        where: {
+          user: { user_id: data.userId },
+          expenditureId: data.expenditureId,
+        },
+      });
+      this.expenditureRepository.merge(expenditure, data);
+      return await this.expenditureRepository.save(expenditure);
+    } catch (error) {
+      throw new UnauthorizedException(
+        'O ID está errado ou você não possui autorização para atualizar esta despesa',
+      );
+    }
   }
 
   async destroy(userId: string, expenditureId: string) {
-    const expenditure = await this.findOneOrFail({
-      where: { user: { user_id: userId }, expenditureId: expenditureId },
-    });
-    this.expenditureRepository.remove(expenditure);
+    try {
+      const expenditure = await this.findOneOrFail({
+        where: { user: { user_id: userId }, expenditureId: expenditureId },
+      });
+      this.expenditureRepository.remove(expenditure);
+    } catch (error) {
+      throw new UnauthorizedException(
+        'O ID está errado ou você não possui autorização para deletar esta despesa',
+      );
+    }
   }
 }

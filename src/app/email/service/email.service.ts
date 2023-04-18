@@ -9,7 +9,6 @@ export class EmailService {
   async enviarEmail(data: ExpendituresEntity) {
     await this.mailerService.sendMail({
       to: data.user.email,
-      from: 'andreygiovannircc@gmail.com',
       subject: 'Foi criada uma nova despesa!',
       html: `<h2> Foi criada uma nova despesa no seu usuário! </h2>
       <h3>Dados da despesa:</h3>

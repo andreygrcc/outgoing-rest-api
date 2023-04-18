@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { ExpendituresEntity } from '../entities/expenditures.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthModule } from 'src/auth/auth.module';
+import { AuthModule } from 'src/auth/module/auth.module';
 import { ExpendituresMapper } from '../mapper/expenditures.mapper';
 import { UsersModule } from '../../users/users.module';
 import { ExpendituresController } from '../controller/expenditures.controller';

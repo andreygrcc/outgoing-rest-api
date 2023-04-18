@@ -1,5 +1,4 @@
 import {
-  IsDate,
   IsDateString,
   IsNotEmpty,
   IsPositive,
@@ -15,7 +14,7 @@ export class CreateExpenditureDto {
   userId?: string;
 
   @IsNotEmpty()
-  @MaxLength(160, {
+  @MaxLength(191, {
     message:
       'A descrição é muito longa. o tamanho máximo é $constraint1 caracteres, atualmente possui $value',
   })

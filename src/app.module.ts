@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { UsersModule } from './app/users/users.module';
-import { AuthModule } from './auth/auth.module';
+import { AuthModule } from './auth/module/auth.module';
 import { IsUserAlreadyExistDecorator } from './shared/decorators/IsUserAlreadyExists.decorator';
 import { ExpendituresModule } from './app/expenditures/module/expenditures.module';
 import { IsEmailAlreadyExistDecorator } from './shared/decorators/IsEmailAlreadyExists.decorator';

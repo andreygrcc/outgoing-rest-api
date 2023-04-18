@@ -18,7 +18,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
       },
       defaults: {
         // configurações que podem ser padrões
-        from: '"',
+        from: process.env.MAILER_SENDER,
       },
     }),
   ],

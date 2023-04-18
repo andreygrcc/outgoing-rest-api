@@ -24,13 +24,13 @@ import {
 import { IndexUserSwagger } from './swagger/index-user.swagger';
 
 @Controller('api/users')
-@UseGuards(JwtAuthGuard)
 @ApiTags('Users')
-@ApiBearerAuth('JWT-auth')
 export class UsersController {
   constructor(private readonly usersService: UsersService) {}
 
   @Get()
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Lista todas os usuários cadastrados' })
   @ApiResponse({
     status: 200,
@@ -43,6 +43,8 @@ export class UsersController {
   }
 
   @Get(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Lista o usuário pelo id fornecido' })
   @ApiResponse({ status: 200, description: 'Lista de usuários' })
   @ApiResponse({
@@ -60,8 +62,9 @@ export class UsersController {
     return await this.usersService.store(body);
   }
 
-  @UseGuards(JwtAuthGuard)
   @Put(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   @ApiOperation({ summary: 'Rota para atualização de usuários' })
   @ApiResponse({ status: 200, description: 'Usuário atualizado com sucesso' })
   @ApiResponse({
@@ -76,6 +79,8 @@ export class UsersController {
   }
 
   @Delete(':id')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth('JWT-auth')
   @HttpCode(HttpStatus.NO_CONTENT)
   @ApiOperation({ summary: 'Rota para exclusão de usuário pelo id fornecido' })
   @ApiResponse({ status: 200, description: 'Usuário excluído com sucesso' })
@@ -85,5 +90,6 @@ export class UsersController {
   })
   async destroy(@Param('id', new ParseUUIDPipe()) id: string) {
     await this.usersService.destroy(id);
+    return 'O usuário foi excluido com sucesso!';
   }
 }

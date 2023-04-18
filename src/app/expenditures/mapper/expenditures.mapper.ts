@@ -5,12 +5,12 @@ import { ExpendituresEntity } from '../entities/expenditures.entity';
 
 @Injectable()
 export class ExpendituresMapper {
-  constructor(readonly userService: UsersService) {}
+  constructor(readonly usersService: UsersService) {}
   async mapFrom(dto: CreateExpenditureDto) {
     const expenditure = new ExpendituresEntity();
     expenditure.description = dto.description;
     expenditure.expenditureDate = dto.date;
-    expenditure.user = await this.userService.findOneOrFail({
+    expenditure.user = await this.usersService.findOneOrFail({
       where: { user_id: dto.userId },
     });
     expenditure.value = dto.value;

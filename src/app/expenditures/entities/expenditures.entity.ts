@@ -31,4 +31,12 @@ export class ExpendituresEntity {
   })
   @JoinColumn({ name: 'user_id', referencedColumnName: 'user_id' })
   user?: UsersEntity;
+
+  constructor(expenditure?: Partial<ExpendituresEntity>) {
+    this.expenditureId = expenditure?.expenditureId;
+    this.description = expenditure?.description;
+    this.expenditureDate = expenditure?.expenditureDate;
+    this.value = expenditure?.value;
+    this.user = expenditure?.user;
+  }
 }

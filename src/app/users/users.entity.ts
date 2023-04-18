@@ -34,4 +34,11 @@ export class UsersEntity {
   hashPassword(): void {
     this.password = hashSync(this.password, 10);
   }
+  constructor(user?: Partial<UsersEntity>) {
+    this.email = user?.email;
+    this.expenditure = user?.expenditure;
+    this.password = user?.password;
+    this.username = user?.username;
+    this.user_id = user?.user_id;
+  }
 }
