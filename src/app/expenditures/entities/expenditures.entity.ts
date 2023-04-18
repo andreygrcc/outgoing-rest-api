@@ -6,10 +6,12 @@ import {
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UsersEntity } from '../../users/users.entity';
+import { ApiProperty } from '@nestjs/swagger';
 
 @Entity({ name: 'expenditures' })
 export class ExpendituresEntity {
   @PrimaryGeneratedColumn('uuid')
+  @ApiProperty()
   expenditureId: string;
   @Column({
     name: 'value',
@@ -18,11 +20,14 @@ export class ExpendituresEntity {
     scale: 2,
     default: 0,
   })
+  @ApiProperty()
   value: number;
   @Column({ name: 'description', type: 'varchar' })
+  @ApiProperty()
   description: string;
 
   @Column({ name: 'expenditureDate', type: 'date' })
+  @ApiProperty()
   expenditureDate: Date;
 
   @ManyToOne(() => UsersEntity, (user) => user.expenditure, {

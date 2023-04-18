@@ -95,11 +95,11 @@ export class ExpendituresController {
     return await this.expenditureService.update(body);
   }
 
-  @Delete(':id')
+  @Delete(':expenditureId')
   @ApiOperation({ summary: 'Rota para exclusão de uma despesa' })
   async deleteExpenditure(
     @Req() user: any,
-    @Param('id', new ParseUUIDPipe()) id: string,
+    @Param('expenditureId', new ParseUUIDPipe()) id: string,
   ) {
     const currentUser = await this.authService.getUserByReq(user);
     await this.expenditureService.destroy(currentUser.sub, id);
