@@ -29,6 +29,6 @@ export class CreateExpenditureDto {
 
   @MaxDate(new Date())
   @IsDateString()
-  @ApiProperty()
+  @ApiProperty({ example: '2023-04-18' })
   date: Date;
 }
